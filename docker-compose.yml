@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  overcalc-frontend:
+    image: overcalc-frontend:latest
+    container_name: overcalc_frontend
+    restart: always
+    depends_on:
+      - overcalc-backend
+    ports:
+      - 80:80
+  overcalc-backend:
+    image: overcalc-backend:latest
+    container_name: overcalc_backend
+    restart: always
+    ports:
+      - 8080:8080

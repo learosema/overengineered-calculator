@@ -3,21 +3,21 @@
 <div class="calculator">
   <app-display [value]="display"></app-display>
   <div class="calculator__keyboard">
-    <app-button [char]="'0'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'1'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'2'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'3'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'4'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'5'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'6'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'7'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'8'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'9'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'+'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'-'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'*'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'/'" (press)="onPressDigit($event)"></app-button>
-    <app-button [char]="'='" (press)="onPressDigit($event)"></app-button>
+    <app-button [char]="'0'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'1'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'2'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'3'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'4'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'5'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'6'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'7'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'8'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'9'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'+'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'-'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'*'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'/'" (press)="onPressKey($event)"></app-button>
+    <app-button [char]="'='" (press)="onEval()"></app-button>
     <app-button [char]="'C'" (press)="onPressClear()"></app-button>
   </div>
 </div>

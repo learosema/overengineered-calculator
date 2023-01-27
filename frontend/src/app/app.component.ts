@@ -1,18 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { CalulateService } from './calulate.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   last = '0';
   lastOp = '';
   display = '0';
+  isResult = true;
 
-  onPressDigit(char: string) {
-    if (this.display === '0') {
+  _subscriptions = new Subscription();
+  constructor(private calculateService: CalulateService) {}
+
+  ngOnDestroy(): void {
+      this._subscriptions.unsubscribe();
+  }
+
+  onPressKey(char: string) {
+    if (this.isResult) {
       this.display = char;
+      this.isResult = false;
       return;
     }
     this.display += char;
@@ -20,11 +31,14 @@ export class AppComponent {
 
   onPressClear() {
     this.display = '0';
+    this.isResult = true;
   }
 
-  onAdd() {
-    this.last = this.display;
-    this.display = '';
-    this.lastOp = 'add';
+  onEval() {
+    this._subscriptions.add(this.calculateService.eval(this.display).subscribe(calcResult => {
+      this.display = calcResult.result.toString();
+      this.isResult = true;
+    }));
+    this._subscriptions.add(this.calculateService.eval2().subscribe(result => console.log(result)))
   }
 }

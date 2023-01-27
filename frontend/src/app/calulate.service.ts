@@ -2,20 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, switchMap } from 'rxjs';
 
-interface CalculateResult {
+export interface CalculateResult {
   result: number;
 }
 
 interface Term {
   number: string;
-  op ?: string;
+  op?: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CalulateService {
-
   constructor(private _http: HttpClient) {}
 
   public add(a: number, b: number): Observable<CalculateResult> {
@@ -36,12 +35,11 @@ export class CalulateService {
 
   public eval2() {
     return this.add(1, 1).pipe(
-      switchMap(calcResult => {
+      switchMap((calcResult) => {
         return this.add(calcResult.result, 3);
       })
     );
   }
-
 
   public eval(expression: string): Observable<CalculateResult> {
     const operations: Array<Term> = [];
@@ -56,20 +54,20 @@ export class CalulateService {
           currentTerm += expression;
           continue;
         }
-        operations.push({number: currentTerm, op: expression[idx]})
+        operations.push({ number: currentTerm, op: expression[idx] });
         currentTerm = '';
         continue;
       }
       if (expression[idx] === '*' || expression[idx] === '/') {
         if (currentTerm === '') {
-          currentTerm = '0'
+          currentTerm = '0';
         }
-        operations.push({number: currentTerm, op: expression[idx]});
+        operations.push({ number: currentTerm, op: expression[idx] });
         currentTerm = '';
       }
     }
     if (currentTerm !== '') {
-      operations.push({number: currentTerm})
+      operations.push({ number: currentTerm });
     }
     let result = 0;
     let lastOp = '';
@@ -91,6 +89,6 @@ export class CalulateService {
       }
       lastOp = operation.op || '';
     }
-    return of({result});
+    return of({ result });
   }
 }

@@ -1,1 +1,2 @@
-<input class="display" value="{{ value }}">
+<label class="visually-hidden" [attr.for]="id">Calculator Display:</label>
+<input [attr.id]="id" [attr.disabled]="disabled" class="display" [formControl]="formValue" (blur)="handleBlur($event)" (change)="handleChange($event)">
